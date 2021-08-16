@@ -14,8 +14,9 @@ public class DataBase {
     }
 
     public static void saveCompanies(Collection<Company> companies) {
-        try (PreparedStatement ps = getConnection().prepareStatement(
-                "INSERT INTO companies (id, name, location) VALUES (?,?,?) ON CONFLICT ON CONSTRAINT company_duplicate DO NOTHING")) {
+        try (Connection connection = getConnection();
+             PreparedStatement ps = connection.prepareStatement(
+                     "INSERT INTO companies (id, name, location) VALUES (?,?,?) ON CONFLICT ON CONSTRAINT company_duplicate DO NOTHING")) {
             for (Company company : companies) {
                 ps.clearParameters();
                 ps.setString(1, company.getId());

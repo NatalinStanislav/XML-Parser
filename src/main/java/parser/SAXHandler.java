@@ -7,7 +7,7 @@ import java.util.*;
 
 class SAXHandler extends DefaultHandler {
 
-    private final int capacity = 1000;
+    private final int capacity = 10000;
     private Company company = null;
     private String content = null;
     Set<Company> companies = new HashSet<>(capacity);        // Try to avoid duplicates in current Set. May be useful if XML-file contains a lot of duplicates
